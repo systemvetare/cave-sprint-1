@@ -18,6 +18,7 @@ public class Room{
     SOUTH,
     WEST;
   }
+  
   public Room(String description,
               Room north,
               Room east,
@@ -55,9 +56,18 @@ public class Room{
   public List<Thing> things(){
     List unmodifiableList = Collections.unmodifiableList(things);
     return unmodifiableList;
-  // Return an unmodifialble view of the things list
   }
   public Thing removeThing(Thing thing){
+    if(thing == null){
+      throw new NullPointerException("<<Thing can't be null, fool>>");
+    }
+    if(this.things.contains(thing)){
+      this.things.remove(thing);
+    }
+    else{
+      throw new IllegalArgumentException("<<Cannot find the item that's supposed to be removed>>");
+    }
+    return thing;
   // Check if thing is null, and if so,
   //   throw a new NullPointerException with a message
   // If we can remove the thing from our things-list,
@@ -66,6 +76,15 @@ public class Room{
   // a new IllegalArgumentException with a message.
   }
   public void putThing(Thing thing){
+    if(thing == null){
+      throw new NullPointerException("<<Thing can't be null, fool>>");
+    }
+    if(!this.things.contains(thing)){
+      this.things.add(thing);
+    }
+    else{
+      throw new IllegalArgumentException("<<The thing is already in the room!>>");
+    }
   // IF the thing is null, throw a new NullPointerException
   //   with a message.
   // If we already have the Thing in the room, throw a new
@@ -73,6 +92,18 @@ public class Room{
   // Otherwise, add the thing to the rooms list of things.
   }
   public Room getRoom(Direction direction){
+    switch(direction){
+        case NORTH :
+          return this.north;
+        case EAST :
+          return this.east;
+        case SOUTH :
+          return this.south;
+        case WEST :
+          return this.west;
+        default :
+          return null;
+    }
   // Use a switch-case or an if-else-if statement
   // to decide what room to return.
   // You know the direction from the parameter,
@@ -81,11 +112,12 @@ public class Room{
   // return.
   }
   public String description(){
+    return this.description;
   // Return a String with the description for this Room
   // e.g. the instance variable holding this information.
   }
-  @override
   public String toString() {
+    return this.description + " " + this.things.toString();
   // Return a String describing this room.
   // Perhaps, the description and the list of things?
   }

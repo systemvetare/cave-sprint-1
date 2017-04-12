@@ -2,6 +2,8 @@ package se.itu.game.cave;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
+import se.itu.game.cave.init.*;
 
 public class Player{
   private static Player player;
@@ -19,33 +21,50 @@ public class Player{
   return player;
   }
   public void takeThing(Thing thing){
+    this.inventory.add(currentRoom.removeThing(thing));
    // Remove this things from the current room
    // Add this thing to the inventory
   }
   public void dropThing(Thing thing){
+    if(this.inventory.contains(thing)){
+      this.currentRoom.putThing(thing);
+      this.inventory.remove(thing);
+    }
+    else{
+      throw new IllegalArgumentException("<<This thing isn't in the inventory>>");
+    }
   // Check that we can drop this Thing, or
   // throw a new IllegalArgumentException with messge
   // Remove this thing from the inventory
   }
   public List<Thing> inventory(){
   // return a reference to the player's inventory
-
+    List unmodifiableList = Collections.unmodifiableList(inventory);
+    return unmodifiableList;
   // (or if you are fancy, a copy of it or a
   //  view of it which cannot be modified)
   // The last thing is "extra for the ambitious"
   }
   public Room currentRoom(){
+    return this.currentRoom;
   // return a reference to the Player's current Room
   }
-  public void go(Direction direction){
+  public void go(Room.Direction direction){
+    Room nextRoom = this.currentRoom.getRoom(direction);
+    if(nextRoom == null){
+      throw new IllegalArgumentException("<<The next room is null, this cannot be!>>");
+    }
+    else{
+      this.currentRoom = nextRoom;
+    }
     // Ask the current Room for the Room in "direction" and save it
     // Check if the Room in that direction is null, and if so
     //  throw a new IllegalArgumentException with a message
     // If it wasn't null,
     //  change the Player's current Room to the Room above
   }
-  @override
   public String toString(){
+    return "Current Room: " + this.currentRoom.toString() + "\nInventory: " + this.inventory.toString();
   // return a string with information about e.g.
   // the current room and the whole inventory.
   }
