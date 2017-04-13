@@ -18,7 +18,7 @@ public class Room{
     SOUTH,
     WEST;
   }
-  
+
   public Room(String description,
               Room north,
               Room east,
@@ -61,7 +61,7 @@ public class Room{
     if(thing == null){
       throw new NullPointerException("<<Thing can't be null, fool>>");
     }
-    if(this.things.contains(thing)){
+    else if(this.things.contains(thing)){
       this.things.remove(thing);
     }
     else{
