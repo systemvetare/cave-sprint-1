@@ -102,6 +102,7 @@ public class MainFrame {
     renderer = new ThingRenderer<Thing>();
     inventoryModel = new DefaultListModel<Thing>();
     roomThingsModel = new DefaultListModel<Thing>();
+
     updateGui();
     listPanel = new JPanel();
     inventory = new JList<>(inventoryModel);
@@ -110,11 +111,12 @@ public class MainFrame {
     roomThings = new JList<>(roomThingsModel);
     roomThings.setCellRenderer(renderer);
     roomThings.setPrototypeCellValue(new Thing("Pirate ChestXXXXXXXX"));
+
+    mainFrame.setMinimumSize(new Dimension(560,350));
   }
 
 
   private void updateButtons() {
-
     Room currentRoom = player.currentRoom();
     for (Direction dir : Direction.values()) {
       buttonMap.get(dir).setEnabled(currentRoom.getRoom(dir) != null);

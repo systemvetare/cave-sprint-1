@@ -15,7 +15,7 @@ public class Thing {
   public Thing(String name) {
     this.name = name;
   }
-    
+
   /**
    * Returns the name of the Thing
    * @return the name of the Thing
@@ -47,5 +47,5 @@ public class Thing {
     }
     return ((Thing) other).name.equals(name);
   }
-    
+
 }

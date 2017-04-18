@@ -139,7 +139,7 @@ for the room in some direction.
    * @param direction the direction in which to move the player.
    * @throws IllegalArgumentException - if the room in direction does not exist.
    */
-  public void go(Direction direction) {
+  public void go(Room.Direction direction) {
     // Ask the current Room for the Room in "direction" and save it
     // Check if the Room in that direction is null, and if so
     //  throw a new IllegalArgumentException with a message
