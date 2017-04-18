@@ -9,7 +9,11 @@ se/                     <- the directory for all the Java files
 
 Issue the following in order to compile and run the GUI:
 
+NOT WINDOWS
 javac se/itu/game/main/MainGui.java && java -Ddodebug=true -cp sqlite-jdbc-3.16.1.jar:. se.itu.game.main.MainGui
+
+WINDOWS
+javac se/itu/game/main/MainGui.java && java -Ddodebug=true -cp "sqlite-jdbc-3.16.1.jar;." se.itu.game.main.MainGui
 
 The GUI needs some work!
 

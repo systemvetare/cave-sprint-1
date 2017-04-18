@@ -7,7 +7,12 @@ driver for the SQLite3 JDBC.
 
 Issue the following to compile and run the Room test:
 
+NOT WINDOWS
 javac se/itu/game/test/TestRoom.java && java -cp .:sqlite-jdbc-3.16.1.jar -ea se.itu.game.test.TestRoom
+
+WINDOWS
+javac se/itu/game/test/TestRoom.java && java -cp ".;sqlite-jdbc-3.16.1.jar" -ea se.itu.game.test.TestRoom
+
 Running test R1 - connecting two rooms
 R1 passed OK.
 Running test R2 - checking things
@@ -26,7 +31,12 @@ To run the test for Player:
 
 From the same directory as above, issue the following:
 
+NOT WINDOWS
 javac se/itu/game/test/TestPlayer.java && java -cp .:sqlite-jdbc-3.16.1.jar -ea se.itu.game.test.TestPlayer
+
+WINDOWS
+javac se/itu/game/test/TestPlayer.java && java -cp ".;sqlite-jdbc-3.16.1.jar" -ea se.itu.game.test.TestPlayer
+
 Running test P1 (Picking up and dropping down things)
 P1 passed OK
 Running test P2 (Dropping things you already have etc)
