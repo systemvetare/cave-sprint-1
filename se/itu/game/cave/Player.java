@@ -49,19 +49,23 @@ public class Player{
     return this.currentRoom;
   // return a reference to the Player's current Room
   }
-  public void go(Room.Direction direction){
+  public void go(Room.Direction direction) throws IllegalMoveException{
     Room nextRoom = this.currentRoom.getRoom(direction);
     if(nextRoom == null){
-      throw new IllegalArgumentException("<<The next room is null, this cannot be!>>");
+      throw new IllegalMoveException("<<The next room is null, this cannot be!>>");
     }
-    else{
-      this.currentRoom = nextRoom;
-    }
+    this.currentRoom = nextRoom;
     // Ask the current Room for the Room in "direction" and save it
     // Check if the Room in that direction is null, and if so
     //  throw a new IllegalArgumentException with a message
     // If it wasn't null,
     //  change the Player's current Room to the Room above
+  }
+  public String describeCurrentRoom(){
+    return this.currentRoom.description();
+  }
+  public List<Thing> describeThings(){
+    return this.currentRoom.things();
   }
   public String toString(){
     return "Current Room: " + this.currentRoom.toString() + "\nInventory: " + this.inventory.toString();

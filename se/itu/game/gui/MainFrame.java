@@ -6,6 +6,7 @@ import se.itu.game.cave.Player;
 import se.itu.game.cave.Room;
 import se.itu.game.cave.Thing;
 import se.itu.game.cave.init.CaveInitializer;
+import se.itu.game.cave.IllegalMoveException;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -195,7 +196,7 @@ public class MainFrame {
   private void updateGui() {
     updateModels();
     updateButtons();
-    roomInfo.setText(player.currentRoom().description());
+    roomInfo.setText(player.describeCurrentRoom());
   }
 
   private void addListeners() {
